@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { moneyFlowTypes } from '../../resources/scripts/helpers';
+import { CategoriesAverage } from '../categoriesAverage/CategoriesAverage';
 import { DateSelect } from '../dateSelect/DateSelect';
 import './yearView.scss';
 
 const YearView = () => {
 	const [year, setYear] = useState<any>();
-	const [variableExpenses, setVariableExpenses] = useState<any>();
+	const [variableCosts, setVariableCosts] = useState<any>();
 	const [variableIncomes, setVariableIncomes] = useState<any>();
-	const [fixedExpenses, setFixedExpenses] = useState<any>();
+	const [fixedCosts, setFixedCosts] = useState<any>();
 	const [fixedIncomes, setFixedIncomes] = useState<any>();
 	const [savings, setSavings] = useState<any>();
 
 	useEffect(() => {
-		setVariableExpenses(null);
+		setVariableCosts(null);
 		setVariableIncomes(null);
-		setFixedExpenses(null);
+		setFixedCosts(null);
 		setFixedIncomes(null);
 		setSavings(null);
 		
 		if (year) {
-			fetch(`/budgetData?type=${moneyFlowTypes.variableExpenses}&date=${year.toISOString()}&interval=year`)
+			fetch(`/budgetData?type=${moneyFlowTypes.variableCosts}&date=${year.toISOString()}&interval=year`)
 				.then((res) => res.json())
-				.then((data) => setVariableExpenses(data))
+				.then((data) => setVariableCosts(data))
 				.catch(e => console.error("fetch error: ", e));
 
 			fetch(`/budgetData?type=${moneyFlowTypes.variableIncomes}&date=${year.toISOString()}&interval=year`)
@@ -34,9 +35,9 @@ const YearView = () => {
 				.then((data) => setFixedIncomes(data))
 				.catch(e => console.error("fetch error: ", e));
 
-			fetch(`/budgetData?type=${moneyFlowTypes.fixedExpenses}&date=${year.toISOString()}&interval=year`)
+			fetch(`/budgetData?type=${moneyFlowTypes.fixedCosts}&date=${year.toISOString()}&interval=year`)
 				.then((res) => res.json())
-				.then((data) => setFixedExpenses(data))
+				.then((data) => setFixedCosts(data))
 				.catch(e => console.error("fetch error: ", e));
 
 			fetch(`/budgetData?type=${moneyFlowTypes.savings}&date=${year.toISOString()}&interval=year`)
@@ -45,16 +46,6 @@ const YearView = () => {
 				.catch(e => console.error("fetch error: ", e));
 		}
 	}, [year]);
-
-	useEffect(() => {
-		if (variableExpenses && variableIncomes && fixedIncomes && fixedExpenses && savings) {
-			console.log('variable costs', variableExpenses);
-			console.log('variable incomes', variableIncomes);
-			console.log('fixed incomes', fixedIncomes);
-			console.log('fixed costs', fixedExpenses);
-			console.log('savings', savings);
-		}
-	}, [variableExpenses, variableIncomes, fixedIncomes, fixedExpenses, savings]);
 	
 	return (
 		<div className="yearView">
@@ -64,6 +55,11 @@ const YearView = () => {
 					handleDateChange={(newDate: any) => setYear(newDate)} 
 					type="year"
 				/>
+			</div>
+			<div className="yearView__boxes">
+				{variableCosts &&
+					<CategoriesAverage variableCosts={variableCosts} />
+				}
 			</div>
 		</div>
 	)

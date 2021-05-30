@@ -10,8 +10,8 @@ const database_id = process.env.NOTION_DATABASE_ID;
 module.exports = async function getBudgetData(options) {
 
 	const moneyFlowTypes = {
-		variableExpenses: "Variable Kosten",
-		fixedExpenses: "Fixkosten",
+		variableCosts: "Variable Kosten",
+		fixedCosts: "Fixkosten",
 		variableIncomes: "Variables Einkommen",
 		fixedIncomes: "Fixes Einkommen",
 		savings: "Sparen"
@@ -30,7 +30,7 @@ module.exports = async function getBudgetData(options) {
 	}
 
 	let body;
-	if (options.type === moneyFlowTypes.variableExpenses || options.type === moneyFlowTypes.variableIncomes) {
+	if (options.type === moneyFlowTypes.variableCosts || options.type === moneyFlowTypes.variableIncomes) {
 		body = {
 			filter: {
 				"and": [
@@ -53,9 +53,15 @@ module.exports = async function getBudgetData(options) {
 						}
 					}
 				]
-			}
+			},
+			sorts: [
+				{
+				  "property": "date",
+				  "direction": "ascending"
+				}
+			]
 		};
-	} else if (options.type === moneyFlowTypes.fixedIncomes || options.type === moneyFlowTypes.fixedExpenses || options.type === moneyFlowTypes.savings) {
+	} else if (options.type === moneyFlowTypes.fixedIncomes || options.type === moneyFlowTypes.fixedCosts || options.type === moneyFlowTypes.savings) {
 		body = {
 			filter: {
 				and: [
@@ -99,19 +105,6 @@ module.exports = async function getBudgetData(options) {
 	};
 
 	const results = await getResults(payload, []);
-	
-	// const responseData = await notion.request(payload);
-
-	// if (responseData.has_more) {
-	// 	results.push(...responseData.results);
-	// 	console.log('MORE!!');
-	// 	body.start_cursor = responseData.next_cursor;
-	// 	const newResponseData = await notion.request(payload);
-	// 	results.push(...newResponseData?.results);
-	// } else {
-	// 	console.log('dont have has more');
-	// 	results.push(...responseData.results);
-	// }
 
 	const structuredData = results.map(page => {
 		return {

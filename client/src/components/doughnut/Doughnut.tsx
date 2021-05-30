@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { formatter } from '../../resources/scripts/helpers';
+import { formatter, getVariableCostsSortedByCategory } from '../../resources/scripts/helpers';
 import './doughnut.scss';
 import Chart from 'chart.js/auto';
 import { TagSelect } from '../tagSelect/TagSelect';
 
 interface DoughnutProps {
-	variableExpenses: any,
+	variableCosts: any,
 	variableIncomes: any,
-	fixedExpenses: any,
+	fixedCosts: any,
 	fixedIncomes: any,
 	savings: any
 }
@@ -36,9 +36,9 @@ const Doughnut = (props: DoughnutProps) => {
 	
 	useEffect(() => {
 		if (activeMoneyFlowType === 'Variable costs') {
-			setCompositionData(getVariableExpensesChartData());
+			setCompositionData(getVariableCostsSortedByCategory(props.variableCosts));
 		} else if (activeMoneyFlowType === 'Fixed costs') {
-			setCompositionData(getStructuredChartDataOf(props.fixedExpenses));
+			setCompositionData(getStructuredChartDataOf(props.fixedCosts));
 		} else if (activeMoneyFlowType === 'Variable incomes') {
 			setCompositionData(getStructuredChartDataOf(props.variableIncomes));
 		} else if (activeMoneyFlowType === 'Fixed incomes') {
@@ -69,28 +69,6 @@ const Doughnut = (props: DoughnutProps) => {
 		}));
 	}, [compositionData])
 
-	const getVariableExpensesChartData = () => {
-		const variableExpenses = [... props.variableExpenses];
-		const categories: any = [];
-		variableExpenses.forEach((entry: any) => {
-			const index = categories.findIndex((x: any) => x.name === entry.category.name);
-
-			if (index === -1) {
-				const dataEntry = {
-					name: entry.category.name,
-					amount: entry.amount,
-					color: entry.category.color
-				}
-				categories.push(dataEntry);
-			} else {
-				categories[index].amount += entry.amount;
-			}
-		});
-
-		categories.sort((a: any, b: any) => (a.amount < b.amount) ? 1 : -1);
-		return categories;
-	}
-
 	const getStructuredChartDataOf = (apiData: any) => {
 		const fixedIncomes = [... apiData];
 		let data: any = [];
@@ -107,7 +85,6 @@ const Doughnut = (props: DoughnutProps) => {
 		});
 		const maxEntries = 8;
 		if (data.length > maxEntries) {
-			// allow more and add new good looking colors
 			const rest = {
 				name: 'Others',
 				amount: 0,
@@ -129,13 +106,13 @@ const Doughnut = (props: DoughnutProps) => {
 		const values: any = [];
 		compositionData.forEach((data: any) => values.push(data[key]));
 		return values;
-	}
+	};
 
 	const getHexValueForColorName = () => {
 		const colorsNames = getCompositionDataValuesByKey('color');
-		const colorsHex = colorsNames.map((name : any) => colors[name]);
+		const colorsHex = colorsNames.map((name : string) => colors[name]);
 		return colorsHex;
-	}
+	};
 
 	const getCustomLegend = compositionData.map((data: any, index: number) => {
 		return (
@@ -145,7 +122,7 @@ const Doughnut = (props: DoughnutProps) => {
 				<span className="doughnut__legendAmount">– {formatter.format(data.amount)}</span>
 			</li>
 		);
-	})
+	});
 
 	return (
 		<div className="doughnut">

@@ -3,9 +3,9 @@ import { formatter } from '../../resources/scripts/helpers';
 import './balance.scss';
 
 interface BalanceProps {
-	variableExpenses: any,
+	variableCosts: any,
 	variableIncomes: any,
-	fixedExpenses: any,
+	fixedCosts: any,
 	fixedIncomes: any,
 	savings: any
 }
@@ -22,8 +22,8 @@ const Balance = (props: BalanceProps) => {
 	const [ balance, setBalance ] = useState<number>(0);
 
 	useEffect(() => {
-		setVariableCostsSum(getRoundedSum(props.variableExpenses));
-		setFixedCostsSum(getRoundedSum(props.fixedExpenses));
+		setVariableCostsSum(getRoundedSum(props.variableCosts));
+		setFixedCostsSum(getRoundedSum(props.fixedCosts));
 		setSavingsSum(getRoundedSum(props.savings));
 		setVariableIncomesSum(getRoundedSum(props.variableIncomes));
 		setFixedIncomesSum(getRoundedSum(props.fixedIncomes));
