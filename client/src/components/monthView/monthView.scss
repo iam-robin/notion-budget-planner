@@ -1,0 +1,37 @@
+@import '../../resources/styles/settings.scss';
+
+.monthView {
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: gridSpacing(10);
+		margin: 0 gridSpacing(2);
+	}
+
+	&__boxes {
+		display: flex;
+
+		@media only screen and (max-width: 1000px) {
+			flex-wrap: wrap;
+		}
+
+		& > * {
+			background-color: $grey-2;
+			padding: gridSpacing(4);
+			border-radius: 8px;
+			width: 50%;
+			margin: 0 gridSpacing(2);
+
+			@media only screen and (max-width: 1000px) {
+				width: 100%;
+				margin: gridSpacing(2);
+			}
+		}
+	}
+
+	&__skeleton {
+		height: 413px;
+		position: relative;
+	}
+}

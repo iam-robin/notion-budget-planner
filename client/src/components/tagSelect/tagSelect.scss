@@ -1,0 +1,18 @@
+@import '../../resources/styles/settings.scss';
+
+.tagSelect {
+	&__tag {
+		display: inline-block;
+		padding: gridSpacing(1) gridSpacing(2);
+		margin: 0 gridSpacing(1) gridSpacing(1) 0;
+		color: $grey-4;
+		cursor: pointer;
+		border-radius: gridSpacing(1);
+		font-size: 12px;
+		
+		&--active {
+			color: $white;
+			background-color: $grey-3;
+		}
+	}
+}

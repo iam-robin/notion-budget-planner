@@ -1,0 +1,13 @@
+@import '../../resources/styles/settings.scss';
+
+.yearView {
+	margin-top: gridSpacing(12);
+
+	&__header {
+		display: flex;
+		height: 80px;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0 gridSpacing(2);
+	}
+}

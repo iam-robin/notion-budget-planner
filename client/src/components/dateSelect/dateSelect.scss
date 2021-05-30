@@ -1,0 +1,41 @@
+@import '../../resources/styles/settings.scss';
+
+.dateSelect {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	user-select: none;
+
+	&__arrow {
+		cursor: pointer;
+		margin-top: gridSpacing(0.5);
+
+		svg {
+			height: gridSpacing(3);
+			width: gridSpacing(3);
+
+			path {
+				stroke: $white;
+			}
+		}
+
+		&--left {
+			margin-right: gridSpacing(2);
+		}
+
+		&--right {
+			margin-left: gridSpacing(2);
+		}
+
+		&--disabled {
+			cursor: auto;
+			opacity: 0.1;
+		}
+	}
+
+	&__date {
+		width: gridSpacing(20);
+		font-size: 18px;
+		text-align: center;
+	}
+}

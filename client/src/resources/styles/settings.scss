@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+// COLORS
+$grey-1: #252731;
+$grey-2: #2D2E38;
+$grey-3: #383A43;
+$grey-4: #717281;
+$white: #EBEBEB;
+$green: #22B66D;
+$red: #EF5D5E;
+
+// HELPERS
+@function gridSpacing($multipicator) {
+	$gridBase: 8px;
+	@return $gridBase * $multipicator;
+}
+
+// FONTS
+$mono: 'Roboto Mono', monospace;
+$sans: 'Lato', sans-serif;
