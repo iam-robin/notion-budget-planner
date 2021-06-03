@@ -4,8 +4,11 @@ import { CategoriesAverage } from '../categoriesAverage/CategoriesAverage';
 import { DateSelect } from '../dateSelect/DateSelect';
 import './yearView.scss';
 
-const YearView = () => {
-	const [year, setYear] = useState<any>();
+interface YearViewProps {
+	date: Date
+}
+
+const YearView = (props: YearViewProps) => {
 	const [variableCosts, setVariableCosts] = useState<any>();
 	const [variableIncomes, setVariableIncomes] = useState<any>();
 	const [fixedCosts, setFixedCosts] = useState<any>();
@@ -19,43 +22,36 @@ const YearView = () => {
 		setFixedIncomes(null);
 		setSavings(null);
 		
-		if (year) {
-			fetch(`/budgetData?type=${moneyFlowTypes.variableCosts}&date=${year.toISOString()}&interval=year`)
+		if (props.date) {
+			fetch(`/budgetData?type=${moneyFlowTypes.variableCosts}&date=${props.date.toISOString()}&interval=year`)
 				.then((res) => res.json())
 				.then((data) => setVariableCosts(data))
 				.catch(e => console.error("fetch error: ", e));
 
-			fetch(`/budgetData?type=${moneyFlowTypes.variableIncomes}&date=${year.toISOString()}&interval=year`)
+			fetch(`/budgetData?type=${moneyFlowTypes.variableIncomes}&date=${props.date.toISOString()}&interval=year`)
 				.then((res) => res.json())
 				.then((data) => setVariableIncomes(data))
 				.catch(e => console.error("fetch error: ", e));
 
-			fetch(`/budgetData?type=${moneyFlowTypes.fixedIncomes}&date=${year.toISOString()}&interval=year`)
+			fetch(`/budgetData?type=${moneyFlowTypes.fixedIncomes}&date=${props.date.toISOString()}&interval=year`)
 				.then((res) => res.json())
 				.then((data) => setFixedIncomes(data))
 				.catch(e => console.error("fetch error: ", e));
 
-			fetch(`/budgetData?type=${moneyFlowTypes.fixedCosts}&date=${year.toISOString()}&interval=year`)
+			fetch(`/budgetData?type=${moneyFlowTypes.fixedCosts}&date=${props.date.toISOString()}&interval=year`)
 				.then((res) => res.json())
 				.then((data) => setFixedCosts(data))
 				.catch(e => console.error("fetch error: ", e));
 
-			fetch(`/budgetData?type=${moneyFlowTypes.savings}&date=${year.toISOString()}&interval=year`)
+			fetch(`/budgetData?type=${moneyFlowTypes.savings}&date=${props.date.toISOString()}&interval=year`)
 				.then((res) => res.json())
 				.then((data) => setSavings(data))
 				.catch(e => console.error("fetch error: ", e));
 		}
-	}, [year]);
+	}, [props.date]);
 	
 	return (
 		<div className="yearView">
-			<div className="yearView__header">
-				<h2>Year View</h2>
-				<DateSelect 
-					handleDateChange={(newDate: any) => setYear(newDate)} 
-					type="year"
-				/>
-			</div>
 			<div className="yearView__boxes">
 				{variableCosts &&
 					<CategoriesAverage variableCosts={variableCosts} />

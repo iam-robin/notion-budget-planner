@@ -1,16 +1,6 @@
 @import '../../resources/styles/settings.scss';
 
 .yearView {
-	margin: gridSpacing(12) 0;
-
-	&__header {
-		display: flex;
-		height: 80px;
-		align-items: center;
-		justify-content: space-between;
-		margin: 0 gridSpacing(2);
-	}
-
 	&__boxes {
 		display: flex;
 

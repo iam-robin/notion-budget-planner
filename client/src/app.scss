@@ -20,6 +20,13 @@ h3 {
 .content {
 	max-width: 1280px;
 	margin: 0 auto;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: 80px;
+	}
 }
 
 .skeleton--shimmer {

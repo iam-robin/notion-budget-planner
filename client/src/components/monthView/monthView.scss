@@ -1,14 +1,6 @@
 @import '../../resources/styles/settings.scss';
 
 .monthView {
-	&__header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: gridSpacing(10);
-		margin: 0 gridSpacing(2);
-	}
-
 	&__boxes {
 		display: flex;
 
@@ -21,7 +13,14 @@
 			padding: gridSpacing(4);
 			border-radius: 8px;
 			width: 50%;
-			margin: 0 gridSpacing(2);
+			
+			&:first-child {
+				margin-right: gridSpacing(2);
+			}
+
+			&:last-child {
+				margin-left: gridSpacing(2);
+			}
 
 			@media only screen and (max-width: 1000px) {
 				width: 100%;

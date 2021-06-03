@@ -1,0 +1,15 @@
+@import '../../resources/styles/settings.scss';
+
+.navigation {
+	display: flex;
+
+	&__tab {
+		cursor: pointer;
+		padding-right: gridSpacing(2);
+		color: $grey-3;
+
+		&--active {
+			color: $white;
+		}
+	}
+}
