@@ -3,6 +3,7 @@ import { formatter, getVariableCostsSortedByCategory } from '../../resources/scr
 import './doughnut.scss';
 import Chart from 'chart.js/auto';
 import { TagSelect } from '../tagSelect/TagSelect';
+import { CategoriesList } from '../categoriesList/CategoriesList';
 
 interface DoughnutProps {
 	variableCosts: any,
@@ -114,16 +115,6 @@ const Doughnut = (props: DoughnutProps) => {
 		return colorsHex;
 	};
 
-	const getCustomLegend = compositionData.map((data: any, index: number) => {
-		return (
-			<li className="doughnut__legendItem" key={index}>
-				<span className="doughnut__legendColor" style={{backgroundColor: colors[data.color]}}></span>
-				<span className="doughnut__legendName">{data.name}</span>
-				<span className="doughnut__legendAmount">– {formatter.format(data.amount)}</span>
-			</li>
-		);
-	});
-
 	return (
 		<div className="doughnut">
 			<div className="doughnut__selectWrapper">
@@ -137,9 +128,9 @@ const Doughnut = (props: DoughnutProps) => {
 				<div className="doughnut__chart">
 					<canvas ref={chartRef}></canvas>
 				</div>
-				<ul className="doughnut__legend">
-					{ getCustomLegend }
-				</ul>
+				<div className="doughnut__legend">
+					<CategoriesList categories={compositionData} amountOfMonths={1}/>
+				</div>
 			</div>
 		</div>
 	)

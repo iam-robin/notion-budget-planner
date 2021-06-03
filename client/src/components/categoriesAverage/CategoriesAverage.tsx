@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { formatter, getVariableCostsSortedByCategory } from '../../resources/scripts/helpers';
+import { CategoriesList } from '../categoriesList/CategoriesList';
 import { TagSelect } from '../tagSelect/TagSelect';
 import './categoriesAverage.scss';
 
@@ -20,40 +21,35 @@ const colors: any = {
 	default: '#a5b1c2',
 }
 
+type TagType = 'Total' | 'Monthly average';
+
 const CategoriesAverage = (props: CategoriesAverageProps) => {
 	const [categories, setCategories] = useState<any>();
 	const [amountOfMonths, setAmountOfMonths] = useState<number>(1);
-	const [activeTag, setActiveTag] = useState<string>();
+	const [activeTag, setActiveTag] = useState<TagType>();
 
 	useEffect(() => {
-		const dateOfFirstEntry = new Date(props.variableCosts[0]?.date.start);
-		const dateOfLastEntry = new Date(props.variableCosts[props.variableCosts.length - 1]?.date.start);
 		setCategories(getVariableCostsSortedByCategory(props.variableCosts));
-		setAmountOfMonths(differenceInMonth(dateOfFirstEntry, dateOfLastEntry));
 	}, [props.variableCosts]);
-
-	const getCategoriesAverage = categories?.map((data: any, index: number) => {
-		let amount = data.amount;
-		if (activeTag === 'Monthly average') amount /= amountOfMonths;
-		return (
-			<li className="categoriesAverage__item" key={index}>
-				<span className="categoriesAverage__itemColor" style={{backgroundColor: colors[data.color]}}></span>
-				<span className="categoriesAverage__itemName">{data.name}</span>
-				<span className="categoriesAverage__itemAmount">– {formatter.format(amount)}</span>
-			</li>
-		);
-	});
+	
+	useEffect(() => {
+		if (activeTag === 'Total') {
+			setAmountOfMonths(1);
+		} else if (activeTag === 'Monthly average') {
+			const dateOfFirstEntry = new Date(props.variableCosts[0]?.date.start);
+			const dateOfLastEntry = new Date(props.variableCosts[props.variableCosts.length - 1]?.date.start);
+			setAmountOfMonths(differenceInMonth(dateOfFirstEntry, dateOfLastEntry));
+		}
+	}, [activeTag])
 
 	return (
 		<div className="categoriesAverage">
 			<TagSelect 
 				tags={['Monthly average', 'Total']}
 				activeIndex={0}
-				activeTagChanged={(tag: string) => setActiveTag(tag)}
+				activeTagChanged={(tag: TagType) => setActiveTag(tag)}
 			/>
-			<ul>
-				{getCategoriesAverage}
-			</ul>
+			<CategoriesList categories={categories} amountOfMonths={amountOfMonths}/>
 		</div>
 	)
 };

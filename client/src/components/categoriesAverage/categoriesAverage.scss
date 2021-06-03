@@ -1,36 +1,7 @@
 @import '../../resources/styles/settings.scss';
 
 .categoriesAverage {
-	&__item {
-		display: flex;
-		align-items: center;
-		margin-bottom: gridSpacing(0.5);
-		font-size: 14px;
-
-		&:last-child {
-			margin-bottom: none;
-		}
-	}
-
-	&__itemColor {
-		display: inline-block;
-		height: gridSpacing(2);
-		width: gridSpacing(2);
-		border-radius: 100%;
-		margin-right: gridSpacing(1);
-		flex-shrink: 0;
-	}
-
-	&__itemName {
-		margin-right: gridSpacing(1);
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-	}
-
-	&__itemAmount {
-		font-family: $mono;
-		color: $grey-4;
-		flex-shrink: 0;
+	.categoriesList {
+		margin-top: gridSpacing(4);
 	}
 }
