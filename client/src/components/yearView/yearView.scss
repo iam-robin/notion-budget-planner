@@ -12,7 +12,16 @@
 			background-color: $grey-2;
 			padding: gridSpacing(4);
 			border-radius: 8px;
-			margin: 0 gridSpacing(2);
+
+			&:first-child {
+				width: 30%;
+				margin-right: gridSpacing(2);
+			}
+
+			&:last-child {
+				width: 70%;
+				margin-left: gridSpacing(2);
+			}
 
 			@media only screen and (max-width: 1000px) {
 				width: 100%;

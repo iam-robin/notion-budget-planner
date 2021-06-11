@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { moneyFlowTypes } from '../../resources/scripts/helpers';
+import { AnnualGraph } from '../annualGraph/AnnualGraph';
 import { CategoriesAverage } from '../categoriesAverage/CategoriesAverage';
 import { DateSelect } from '../dateSelect/DateSelect';
 import './yearView.scss';
@@ -55,6 +56,16 @@ const YearView = (props: YearViewProps) => {
 			<div className="yearView__boxes">
 				{variableCosts &&
 					<CategoriesAverage variableCosts={variableCosts} />
+				}
+				{variableCosts && fixedCosts && variableIncomes && fixedIncomes && savings &&
+					<AnnualGraph
+						year={props.date.getFullYear()}
+						variableCosts={variableCosts}
+						fixedCosts={fixedCosts}
+						variableIncomes={variableIncomes}
+						fixedIncomes={fixedIncomes}
+						savings={savings}
+					/>
 				}
 			</div>
 		</div>

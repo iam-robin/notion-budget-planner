@@ -13,7 +13,7 @@ interface DoughnutProps {
 	savings: any
 }
 
-const colors: any = {
+export const colors: any = {
 	yellow: '#f7b731',
 	red: '#eb3b5a',
 	green:'#20bf6b',
@@ -68,7 +68,7 @@ const Doughnut = (props: DoughnutProps) => {
 				},
 			}
 		}));
-	}, [compositionData])
+	}, [compositionData]);
 
 	const getStructuredChartDataOf = (apiData: any) => {
 		const fixedIncomes = [... apiData];
