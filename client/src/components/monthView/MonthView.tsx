@@ -53,13 +53,6 @@ const MonthView = (props: MonthViewProps) => {
 
 	return (
 		<div className="monthView">
-			{/* <div className="monthView__header">
-				<h2>Month View</h2>
-				<DateSelect 
-					handleDateChange={(newDate: any) => setDate(newDate)}
-					type="month"
-				/>
-			</div> */}
 			{
 				variableCosts &&
 				variableIncomes &&

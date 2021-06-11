@@ -53,11 +53,14 @@ const YearView = (props: YearViewProps) => {
 	
 	return (
 		<div className="yearView">
-			<div className="yearView__boxes">
-				{variableCosts &&
+			{
+				variableCosts &&
+				fixedCosts &&
+				variableIncomes &&
+				fixedIncomes &&
+				savings ?
+				<div className="yearView__boxes">
 					<CategoriesAverage variableCosts={variableCosts} />
-				}
-				{variableCosts && fixedCosts && variableIncomes && fixedIncomes && savings &&
 					<AnnualGraph
 						year={props.date.getFullYear()}
 						variableCosts={variableCosts}
@@ -66,8 +69,17 @@ const YearView = (props: YearViewProps) => {
 						fixedIncomes={fixedIncomes}
 						savings={savings}
 					/>
-				}
-			</div>
+				</div>
+				:
+				<div className="yearView__boxes">
+					<div className="yearView__skeleton">
+						<div className="skeleton--shimmer"></div>
+					</div>
+					<div className="yearView__skeleton">
+						<div className="skeleton--shimmer"></div>
+					</div>
+				</div>
+			}
 		</div>
 	)
 };
