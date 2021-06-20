@@ -4,11 +4,11 @@ export const formatter = new Intl.NumberFormat('de-DE', {
 });
 
 export const moneyFlowTypes = {
-	variableCosts: "Variable Kosten",
-	fixedCosts: "Fixkosten",
-	variableIncomes: "Variables Einkommen",
-	fixedIncomes: "Fixes Einkommen",
-	savings: "Sparen"
+	variableCosts: "variable cost",
+	fixedCosts: "fixed cost",
+	variableIncomes: "variable income",
+	fixedIncomes: "fixed income",
+	savings: "savings rate"
 }
 
 export const getVariableCostsSortedByCategory = (variableCosts) => {

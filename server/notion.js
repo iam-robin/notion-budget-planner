@@ -10,11 +10,11 @@ const database_id = process.env.NOTION_DATABASE_ID;
 module.exports = async function getBudgetData(options) {
 
 	const moneyFlowTypes = {
-		variableCosts: "Variable Kosten",
-		fixedCosts: "Fixkosten",
-		variableIncomes: "Variables Einkommen",
-		fixedIncomes: "Fixes Einkommen",
-		savings: "Sparen"
+		variableCosts: "variable cost",
+		fixedCosts: "fixed cost",
+		variableIncomes: "variable income",
+		fixedIncomes: "fixed income",
+		savings: "savings rate"
 	}
 
 	const date = new Date(options.date);
