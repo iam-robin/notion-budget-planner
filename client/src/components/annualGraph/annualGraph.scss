@@ -1,0 +1,45 @@
+@import '../../resources/styles/settings.scss';
+
+.annualGraph {
+	&__legend {
+		display: flex;
+		justify-content: flex-end;
+		list-style: none;
+		margin: 0 0 gridSpacing(2);
+		padding: 0;
+	}
+
+	&__legendItem {
+		display: flex;
+		align-items: center;
+		margin-right: gridSpacing(2);
+		font-size: 12px;
+
+		&::before {
+			content: '';
+			display: inline-block;
+			height: gridSpacing(1.5);
+			width: gridSpacing(1.5);
+			border-radius: 100%;
+			margin-right: gridSpacing(0.5);
+		}
+
+		&--income {
+			&::before {
+				background-color: #20bf6b;
+			}
+		}
+
+		&--costs {
+			&::before {
+				background-color: #eb3b5a;
+			}
+		}
+
+		&--savings {
+			&::before {
+				background-color: #4b7bec;
+			}
+		}
+	}
+}

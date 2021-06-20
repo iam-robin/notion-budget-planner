@@ -71,7 +71,7 @@ const Balance = (props: BalanceProps) => {
 					<span className="balance__listItemValue">{formatter.format(fixedCostsSum)}</span>
 				</li>
 				<li className="balance__listItem">
-					<span className="balance__listItemLabel">Savings</span>
+					<span className="balance__listItemLabel">Savings Rate</span>
 					<span className="balance__listItemValue">{formatter.format(savingsSum)}</span>
 				</li>
 				<li className="balance__listItem">
