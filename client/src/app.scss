@@ -17,40 +17,8 @@ h3 {
 	margin: 0;
 }
 
-.content {
-	max-width: 1280px;
-	margin: 0 auto;
 
-	&__header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		height: 80px;
-		margin-top: gridSpacing(8);
-	}
-}
-
-.skeleton--shimmer {
-	animation-duration: 1.5s;
-	animation-fill-mode: forwards;
-	animation-iteration-count: infinite;
-	animation-name: skeletonShimmer;
-	animation-timing-function: cubic-bezier(.17,.67,.83,.67);
-	background: $grey-2;
-	background: linear-gradient(to right, #2D2E38 0%, #393a47 50%, #2D2E38 100%);
-	background-size: 200% 100%;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
+// DELETE!!!
+.nav {
 	position: absolute;
-}
-
-@keyframes skeletonShimmer{
-	0%{
-		background-position: 100% 0
-	}
-	100%{
-		background-position: -100% 0
-	}
 }

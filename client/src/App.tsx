@@ -1,37 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+  } from "react-router-dom";
 import "./app.scss";
-import { DateSelect } from "./components/dateSelect/DateSelect";
-import { MonthView } from "./components/monthView/MonthView";
-import { Navigation, navigationTabType } from "./components/navigation/Navigation";
-import { YearView } from "./components/yearView/YearView";
+import AuthenticatedApp from "./components/authenticatedApp/AuthenticatedApp";
+import { Login } from "./components/login/Login";
 
 function App() {
-	const defaultTab: navigationTabType = "month"; 
-	const [activeTab, setActiveTab] = useState<navigationTabType>(defaultTab);
-	const [date, setDate] = useState<Date>(new Date());
-
-	const getContent = () => {
-		if (activeTab === 'month') {
-			return <MonthView date={date} />
-		} else if (activeTab === 'year') {
-			return <YearView date={date} />
-		}
-	};
 
 	return (
-		<div className="content">
-			<div className="content__header">
-				<Navigation
-					defaultTab={defaultTab}
-					activeTabChanged={(tab: navigationTabType) => setActiveTab(tab)}
-				/>
-				<DateSelect 
-					handleDateChange={(newDate: any) => setDate(newDate)}
-					type={activeTab}
-				/>
-			</div>
-			{getContent()}
+		<Router>
+			<div>
+			<ul className="nav">
+				<li>
+					<Link to="/">Login</Link>
+				</li>
+				<li>
+					<Link to="/app">App</Link>
+				</li>
+			</ul>
+
+			<Switch>
+				<Route exact path="/">
+					<Login />
+				</Route>
+				<Route path="/app">
+					<AuthenticatedApp />
+				</Route>
+			</Switch>
 		</div>
+		</Router>
 	);
 }
 

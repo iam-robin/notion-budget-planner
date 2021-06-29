@@ -1,0 +1,48 @@
+@import '../../resources/styles/settings.scss';
+
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	&__logo {
+		margin-bottom: gridSpacing(2);
+		width: 180px;
+		height: 64px;
+	}
+
+	&__subline {
+		margin: 0 0 gridSpacing(6);
+		color: $grey-4;
+	}
+
+	&__button {
+		display: flex;
+		align-items: center;
+		background-color: $grey-2;
+		padding: gridSpacing(2) gridSpacing(3);
+		border-radius: 8px;
+		color: $white;
+		text-decoration: none;
+		letter-spacing: 1px;
+		user-select: none;
+		transition: all .3s ease-in;
+
+		&:hover {
+			background-color: $grey-3;
+		}
+	}
+
+	&__buttonLogo {
+		height: 24px;
+		width: 24px;
+		margin-right: gridSpacing(2);
+	}
+}
