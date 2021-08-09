@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "./monthView.scss";
 import { Balance } from '../balance/Balance';
-import { DateSelect } from '../dateSelect/DateSelect';
 import { Doughnut } from '../doughnut/Doughnut';
 import { moneyFlowTypes } from '../../resources/scripts/helpers';
 

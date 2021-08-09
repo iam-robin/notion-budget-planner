@@ -1,0 +1,35 @@
+@import '../../resources/styles/settings.scss';
+
+.button {
+	display: flex;
+	align-items: center;
+	background-color: $grey-2;
+	padding: gridSpacing(2) gridSpacing(3);
+	border-radius: 8px;
+	color: $white;
+	text-decoration: none;
+	letter-spacing: 1px;
+	user-select: none;
+	border: none;
+	cursor: pointer;
+	transition: all .3s ease-in;
+
+	&:hover {
+		background-color: $grey-3;
+	}
+
+	&__icon {
+		height: gridSpacing(3);
+		width: gridSpacing(3);
+		margin-right: gridSpacing(2);
+
+		svg {
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	&__link {
+		text-decoration: none;
+	}
+}
